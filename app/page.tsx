@@ -208,53 +208,6 @@ export default function Home() {
       ) : (
         /* Compare View */
         <div className="flex-1 flex overflow-hidden">
-          {/* Sidebar - Row List */}
-          <aside
-            className="w-64 flex-shrink-0 overflow-y-auto"
-            style={{ borderRight: "1px solid var(--border)", background: "var(--bg-secondary)" }}
-          >
-            <div
-              className="px-4 py-3 text-xs font-semibold uppercase tracking-wider sticky top-0"
-              style={{ background: "var(--bg-secondary)", color: "var(--text-muted)" }}
-            >
-              Prompts
-            </div>
-            <div className="pb-4">
-              {rows.map((row, idx) => (
-                <div
-                  key={row.id}
-                  onClick={() => setSelectedIndex(idx)}
-                  className="px-4 py-3 cursor-pointer transition-colors"
-                  style={{
-                    background: idx === selectedIndex ? "rgba(88, 166, 255, 0.1)" : "transparent",
-                    borderLeft: idx === selectedIndex ? "3px solid var(--accent-blue)" : "3px solid transparent",
-                  }}
-                >
-                  <div className="flex items-center gap-2">
-                    <span
-                      className="w-6 h-6 rounded text-xs flex items-center justify-center"
-                      style={{ background: "var(--bg-tertiary)", color: "var(--text-secondary)" }}
-                    >
-                      {idx + 1}
-                    </span>
-                    <span
-                      className="text-sm truncate flex-1"
-                      style={{ color: idx === selectedIndex ? "var(--text-primary)" : "var(--text-secondary)" }}
-                    >
-                      {row.label || `Prompt ${idx + 1}`}
-                    </span>
-                  </div>
-                  <div
-                    className="mt-1 text-xs truncate pl-8"
-                    style={{ color: "var(--text-muted)" }}
-                  >
-                    {row.before.slice(0, 50)}...
-                  </div>
-                </div>
-              ))}
-            </div>
-          </aside>
-
           {/* Main Compare Area */}
           <main className="flex-1 flex overflow-hidden">
             {/* Before Panel */}
@@ -324,6 +277,53 @@ export default function Home() {
               </div>
             </div>
           </main>
+
+          {/* Sidebar - Row List (Right Side) */}
+          <aside
+            className="w-64 flex-shrink-0 overflow-y-auto"
+            style={{ borderLeft: "1px solid var(--border)", background: "var(--bg-secondary)" }}
+          >
+            <div
+              className="px-4 py-3 text-xs font-semibold uppercase tracking-wider sticky top-0"
+              style={{ background: "var(--bg-secondary)", color: "var(--text-muted)" }}
+            >
+              Prompts
+            </div>
+            <div className="pb-4">
+              {rows.map((row, idx) => (
+                <div
+                  key={row.id}
+                  onClick={() => setSelectedIndex(idx)}
+                  className="px-4 py-3 cursor-pointer transition-colors hover:opacity-80"
+                  style={{
+                    background: idx === selectedIndex ? "rgba(88, 166, 255, 0.1)" : "transparent",
+                    borderRight: idx === selectedIndex ? "3px solid var(--accent-blue)" : "3px solid transparent",
+                  }}
+                >
+                  <div className="flex items-center gap-2">
+                    <span
+                      className="w-6 h-6 rounded text-xs flex items-center justify-center"
+                      style={{ background: "var(--bg-tertiary)", color: "var(--text-secondary)" }}
+                    >
+                      {idx + 1}
+                    </span>
+                    <span
+                      className="text-sm truncate flex-1"
+                      style={{ color: idx === selectedIndex ? "var(--text-primary)" : "var(--text-secondary)" }}
+                    >
+                      {row.label || `Prompt ${idx + 1}`}
+                    </span>
+                  </div>
+                  <div
+                    className="mt-1 text-xs truncate pl-8"
+                    style={{ color: "var(--text-muted)" }}
+                  >
+                    {row.before.slice(0, 50)}...
+                  </div>
+                </div>
+              ))}
+            </div>
+          </aside>
         </div>
       )}
 
